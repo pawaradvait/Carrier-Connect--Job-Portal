@@ -1,0 +1,4 @@
+package com.CareerConnect.repo;
+
+public class UserTypeRepo {
+}

@@ -1,0 +1,4 @@
+package com.CareerConnect.service;
+
+public interface UserTypeService {
+}
