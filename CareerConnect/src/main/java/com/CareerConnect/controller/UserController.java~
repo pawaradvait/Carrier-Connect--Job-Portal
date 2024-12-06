@@ -34,13 +34,29 @@ public class UserController {
         Optional<User> user1 = userService.getUser(user.getEmail());
 
         if(user1.isPresent()){
-            model.addAttribute("user", new User());
+            model.addAttribute("user", user);
             model.addAttribute("getAllTypes" , userTypeService.getAllUserTypes());
             model.addAttribute("error", "Email already exists");
  return "register.html";
         }
         userService.saveUser(user);
         return "redirect:/register";
+    }
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication != null) {
+            new SecurityContextLogoutHandler().logout(request, response, authentication);
+        }
+
+        return "redirect:/";
     }
 
 }

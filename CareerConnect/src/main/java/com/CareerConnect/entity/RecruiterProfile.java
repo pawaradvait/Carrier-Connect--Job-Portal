@@ -2,11 +2,13 @@ package com.CareerConnect.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class RecruiterProfile {
 
     @Id
@@ -31,5 +33,7 @@ public class RecruiterProfile {
     private String profilePhoto;
 
 
-
- }
+    public RecruiterProfile(User user) {
+    this.user = user;
+      }
+}
