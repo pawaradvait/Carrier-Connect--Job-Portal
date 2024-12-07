@@ -9,4 +9,6 @@ public interface RecruiterProfileService {
     Optional<RecruiterProfile> getRecuriterProfilebyUser(int userId);
 
     RecruiterProfile saveRecruiterProfile(RecruiterProfile recruiterProfile);
+
+    RecruiterProfile getcuurentRecuriter();
 }

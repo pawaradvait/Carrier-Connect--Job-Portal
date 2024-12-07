@@ -13,5 +13,5 @@ public interface JobSeekerApplyRepo extends JpaRepository<JobSeekerApply, Intege
 
     List<JobSeekerApply> findByUserId(JobSeekerProfile userId);
 
-    List<JobSeekerApply> findbyJob(JobPostActivity jobPostActivity);
+    List<JobSeekerApply> findByJob(JobPostActivity jobPostActivity);
 }

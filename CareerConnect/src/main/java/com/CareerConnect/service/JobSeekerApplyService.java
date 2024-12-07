@@ -21,9 +21,11 @@ public class JobSeekerApplyService {
     }
 
     public List<JobSeekerApply>  getcandiadteforjobbasedonJObPost(JobPostActivity jobPostActivity){
-        return jobSeekerApplyRepo.findbyJob(jobPostActivity);
+        return jobSeekerApplyRepo.findByJob(jobPostActivity);
     }
 
 
-
+    public void saveJobSeekerApply(JobSeekerApply jobSeekerApply) {
+        jobSeekerApplyRepo.save(jobSeekerApply);
+    }
 }

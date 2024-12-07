@@ -10,5 +10,5 @@ public interface JobSeekerService {
 
     JobSeekerProfile saveJobSeekerProfile(JobSeekerProfile jobSeekerProfile);
 
-    JobSeekerProfile curentJObseeker();
+    void curentJObseeker();
 }
