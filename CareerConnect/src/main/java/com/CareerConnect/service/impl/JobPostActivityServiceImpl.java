@@ -6,6 +6,8 @@ import com.CareerConnect.service.JobPostActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -49,6 +51,18 @@ public class JobPostActivityServiceImpl implements JobPostActivityService {
         }else{
             return null;
         }
+    }
+
+    @Override
+    public List<JobPostActivity> getAll() {
+
+        return jobPostActivityRepository.findAll();
+    }
+
+    @Override
+    public List<JobPostActivity> search(String job, String location,  List<String> jobType, List<String> remote,LocalDate searchDate) {
+
+        return searchDate !=null?jobPostActivityRepository.search(job,location,remote,jobType,searchDate): jobPostActivityRepository.searchWithoutDate(job,location,remote,jobType);
     }
 
 

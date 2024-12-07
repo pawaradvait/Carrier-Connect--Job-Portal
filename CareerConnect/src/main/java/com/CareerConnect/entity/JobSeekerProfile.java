@@ -14,7 +14,7 @@ import java.util.List;
 @Setter
 public class JobSeekerProfile {
     @Id
-    private int userAccountId;
+    private Integer  userAccountId;
 
     @OneToOne
     @JoinColumn(name = "user_account_id")
@@ -39,5 +39,28 @@ public class JobSeekerProfile {
     public JobSeekerProfile(User user) {
 
         this.userId = user;
+    }
+
+    public String getPhotosImagePath() {
+        if (profilePhoto == null) return null;
+        return "/photos/candidate/" + getUserAccountId() + "/" + profilePhoto;
+    }
+
+    @Override
+    public String toString() {
+        return "JobSeekerProfile{" +
+                "userAccountId=" + userAccountId +
+                ", userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", workAuthorization='" + workAuthorization + '\'' +
+                ", employmentType='" + employmentType + '\'' +
+                ", resume='" + resume + '\'' +
+                ", profilePhoto='" + profilePhoto + '\'' +
+                ", skills=" + skills +
+                '}';
     }
 }

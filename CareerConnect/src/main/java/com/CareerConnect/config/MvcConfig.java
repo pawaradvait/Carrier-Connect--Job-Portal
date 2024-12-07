@@ -12,10 +12,10 @@ public class MvcConfig implements WebMvcConfigurer {
     private final String UPLOAD_DIR = "photos";
 
 
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-// Path path = Paths.get(UPLOAD_DIR );
-//        registry.addResourceHandler("/"+UPLOAD_DIR+"/**")
-//                .addResourceLocations("file:" + path.toAbsolutePath() + "/");
-//    }
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+ Path path = Paths.get(UPLOAD_DIR );
+        registry.addResourceHandler("/"+UPLOAD_DIR+"/**")
+                .addResourceLocations("file:" + path.toAbsolutePath() + "/");
+    }
 }

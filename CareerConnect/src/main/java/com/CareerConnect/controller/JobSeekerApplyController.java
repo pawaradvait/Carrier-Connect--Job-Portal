@@ -2,6 +2,7 @@ package com.CareerConnect.controller;
 
 import com.CareerConnect.entity.JobPostActivity;
 import com.CareerConnect.service.JobPostActivityService;
+import com.CareerConnect.service.JobSeekerApplyService;
 import com.CareerConnect.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ public class JobSeekerApplyController {
 
     private final JobPostActivityService jobPostActivityService;
     private final UserService userService;
+    private final JobSeekerApplyService jobSeekerApplyService;
+
 
 
     @GetMapping("job-details-apply/{id}")
