@@ -5,9 +5,16 @@ import com.CareerConnect.entity.Skill;
 import com.CareerConnect.entity.User;
 import com.CareerConnect.service.JobSeekerService;
 import com.CareerConnect.service.UserService;
+import com.CareerConnect.util.FileDownload;
 import com.CareerConnect.util.FileHandler;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.boot.Banner;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -104,4 +111,44 @@ jobSeekerProfile.setSkills(skillss);
         }
         return "redirect:/dashboard/";
     }
+
+
+    @GetMapping("/{id}")
+    public String candidateProfile(@PathVariable("id") int id,Model model){
+        Optional<JobSeekerProfile> jobSeekerProfile = jobSeekerService.getOne(id);
+        if(jobSeekerProfile.isPresent()){
+            model.addAttribute("profile" ,jobSeekerProfile.get());
+        }
+        return "job-seeker-profile.html";
+    }
+
+    @GetMapping("/downloadResume")
+    public ResponseEntity<?> downloadResume(
+            @RequestParam("userID") int userID,
+            @RequestParam("fileName") String fileName
+    )   {
+
+        FileDownload fileDownload = new FileDownload();
+        Resource resource = null;
+try {
+
+     resource =fileDownload.getFile("photos/candidate/" + userID, fileName);
+
+
+}catch (IOException e) {
+    System.out.println(e.getMessage());
+}
+ if(resource != null){
+
+     String contextType ="application/pdf";
+     String headerValue = "attachment; filename=\"" + resource.getFilename() + "\"";
+     return ResponseEntity.ok().contentType(MediaType.parseMediaType(contextType)).header(HttpHeaders.CONTENT_DISPOSITION, headerValue).body(resource);
+
+ }else{
+     return  new ResponseEntity<>("File not found", HttpStatus.NOT_FOUND);
+ }
+
+
+    }
+
 }
