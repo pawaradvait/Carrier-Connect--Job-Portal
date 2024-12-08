@@ -61,7 +61,6 @@ List<JobSeekerSave> jobSeekerSaves = jobSeekerSaveService.getSavedJobs(jobSeeker
                 for(JobSeekerApply jobSeekerApply : jobSeekerApplies) {
                     if (jobSeekerProfile.getUserId() == jobSeekerApply.getUserId().getUserId()) {
                        isActive=true;
-                        jobDetails.setIsActive(true);
                         break;
                     }
                 }
@@ -69,7 +68,7 @@ List<JobSeekerSave> jobSeekerSaves = jobSeekerSaveService.getSavedJobs(jobSeeker
                 for (JobSeekerSave jobSeekerSave : jobSeekerSaves) {
                     if (jobSeekerSave.getJob().getJobPostId() == jobDetails.getJobPostId()) {
                         issaved = true;
-                        jobDetails.setIsSaved(true);
+
                         break;
                     }
                 }

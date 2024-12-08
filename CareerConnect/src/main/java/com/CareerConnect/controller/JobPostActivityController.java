@@ -88,6 +88,7 @@ public class JobPostActivityController{
             partTime = "Part-Time";
             fullTime = "Full-Time";
             freelance = "Freelance";
+            //this is to set for internship
             remote = false;
         }
 
